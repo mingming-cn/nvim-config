@@ -1,0 +1,32 @@
+-- Autocmds are automatically loaded on the VeryLazy event
+-- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
+-- Add any additional autocmds here
+
+-- float diagnostic
+-- vim.o.updatetime = 250
+-- vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+--   group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
+--   callback = function()
+--     vim.diagnostic.open_float(nil, { focus = false })
+--   end,
+-- })
+
+-- 创建一个名为 'QuitOnLastBuffer' 的自动命令组，并在创建之前清除同名组
+-- vim.api.nvim_create_augroup("AutoDeleteNoNameBuffer", { clear = true })
+-- -- 当出现 No Name Buffer 时，自动删除这个 Buffer
+-- vim.api.nvim_create_autocmd("BufModifiedSet", {
+--   group = "AutoDeleteNoNameBuffer",
+--   pattern = "*",
+--   callback = function()
+--     if #vim.fn.getbufinfo({ buflisted = 1 }) == 1 then
+--       LazyVim.info(vim.fn.getbufinfo({ buflisted = 1 })[1].name)
+--     end
+--     -- if #vim.fn.getbufinfo({ buflisted = 1 }) == 2 then
+--     --   for _, buf in pairs(vim.fn.getbufinfo({ buflisted = 1 })) do
+--     --     if buf.name == "" then
+--     --       vim.api.nvim_buf_delete(buf.bufnr, { force = true })
+--     --     end
+--     --   end
+--     -- end
+--   end,
+-- })
