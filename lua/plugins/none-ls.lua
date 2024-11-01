@@ -30,10 +30,10 @@ return {
     opts.sources = vim.list_extend(opts.sources or {}, {
       nls.builtins.formatting.goimports,
       nls.builtins.formatting.gofumpt,
-      goimports_reviser,
-      golines,
       nls.builtins.code_actions.impl,
       nls.builtins.code_actions.gomodifytags,
+      goimports_reviser,
+      golines,
     })
 
     -- for i, v in ipairs(opts.sources) do
