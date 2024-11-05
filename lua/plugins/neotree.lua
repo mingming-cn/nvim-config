@@ -60,15 +60,7 @@ return {
               require("neo-tree.sources.filesystem.commands").open(state)
             end
           end,
-          ["YN"] = "copy_file_name", -- 复制文件名
-          ["YY"] = { -- 复制文件完成路径
-            function(state)
-              local node = state.tree:get_node()
-              local path = node:get_id()
-              vim.fn.setreg("+", path, "c")
-            end,
-            desc = "Copy Path to Clipboard",
-          },
+          ["cn"] = "copy_file_name", -- 复制文件名
         },
       },
     },
