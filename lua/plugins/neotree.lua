@@ -60,7 +60,7 @@ return {
               require("neo-tree.sources.filesystem.commands").open(state)
             end
           end,
-          ["Y"] = "copy_file_name", -- 复制文件名
+          ["YN"] = "copy_file_name", -- 复制文件名
           ["YY"] = { -- 复制文件完成路径
             function(state)
               local node = state.tree:get_node()

@@ -33,7 +33,7 @@ return {
       nls.builtins.code_actions.impl,
       nls.builtins.code_actions.gomodifytags,
       goimports_reviser,
-      golines,
+      -- golines,
     })
 
     -- for i, v in ipairs(opts.sources) do
