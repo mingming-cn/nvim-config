@@ -22,12 +22,22 @@
 --   require("persistence").stop()
 -- end, { desc = "Stop Persistence " })
 
-local Lazygit = require("lazyvim.util.lazygit")
-vim.keymap.set("n", "<leader>gg", function()
-  Lazygit.open({
-    size = {
-      width = 1,
-      height = 1,
-    },
-  })
-end, { desc = "Lazygit (cwd)" })
+-- local Lazygit = require("snacks.lazygit")
+-- vim.keymap.set("n", "<leader>gg", function()
+--   Lazygit.open({
+--     size = {
+--       width = 1,
+--       height = 1,
+--     },
+--   })
+-- end, { desc = "Lazygit (cwd)" })
+
+-- local Util = require("lazyvim.util")
+-- vim.keymap.set("n", "<leader>gg", function()
+--   Util.float_term({ "lazygit" }, {
+--     size = {
+--       width = 1,
+--       height = 1,
+--     },
+--   })
+-- end, { desc = "Lazygit (cwd)" })
