@@ -54,10 +54,3 @@ else
     })
   end
 end
-
--- vim.filetype.add({
---   extension = {
---     gotmpl = "gotmpl",
---     gohtml = "gotmpl",
---   },
--- })
