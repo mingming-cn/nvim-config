@@ -18,14 +18,15 @@ return {
         prepend_extra_args = true,
       },
     })
+
     -- 修改参数，把每行的长度修改为 120 个字符
-    local golines = nls.builtins.formatting.golines.with({
-      generator_opts = {
-        command = "golines",
-        args = { "-m", "120" },
-        to_stdin = true,
-      },
-    })
+    -- local golines = nls.builtins.formatting.golines.with({
+    --   generator_opts = {
+    --     command = "golines",
+    --     args = { "-m", "120" },
+    --     to_stdin = true,
+    --   },
+    -- })
 
     opts.sources = vim.list_extend(opts.sources or {}, {
       nls.builtins.formatting.goimports,
