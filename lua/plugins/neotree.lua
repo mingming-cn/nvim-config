@@ -38,23 +38,43 @@ return {
       window = {
         mappings = {
           o = "system_open", -- 使用系统默认程序打开当前文件
-          h = function(state) -- 折叠当前目录或上级目录
-            local node = state.tree:get_node()
-            if (node.type == "directory" or node:has_children()) and node:is_expanded() then
-              state.commands.toggle_node(state)
-            else
-              require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
-            end
+          h = function(state)
+            -- 折叠当前目录或上级目录
+            -- local node = state.tree:get_node()
+            -- if (node.type == "directory" or node:has_children()) and node:is_expanded() then
+            --   state.commands.toggle_node(state)
+            -- else
+            --   require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
+            -- end
+
+            -- 上级目录
+            require("neo-tree.ui.renderer").focus_node(state, state.tree:get_node():get_parent_id())
           end,
-          l = function(state) -- 目录或文件有子项目的先展开，展开后目录选择第一个子项目，文件打开当前文件
+          l = function(state)
+            -- 目录或文件有子项目的先展开，展开后目录选择第一个子项目，文件打开当前文件
+            -- local node = state.tree:get_node()
+            -- if node.type == "directory" or node:has_children() then
+            --   if not node:is_expanded() then
+            --     state.commands.toggle_node(state)
+            --   elseif node.type == "file" and node:is_expanded() then
+            --     require("neo-tree.sources.filesystem.commands").open(state)
+            --   else
+            --     require("neo-tree.ui.renderer").focus_node(state, node:get_child_ids()[1])
+            --   end
+            -- elseif node.type == "file" then
+            --   require("neo-tree.sources.filesystem.commands").open(state)
+            -- end
+
             local node = state.tree:get_node()
             if node.type == "directory" or node:has_children() then
-              if not node:is_expanded() then
-                state.commands.toggle_node(state)
-              elseif node.type == "file" and node:is_expanded() then
-                require("neo-tree.sources.filesystem.commands").open(state)
+              if node:is_expanded() then
+                if node.type == "directory" then
+                  state.commands.toggle_node(state)
+                elseif node.type == "file" then
+                  require("neo-tree.sources.filesystem.commands").open(state)
+                end
               else
-                require("neo-tree.ui.renderer").focus_node(state, node:get_child_ids()[1])
+                state.commands.toggle_node(state)
               end
             elseif node.type == "file" then
               require("neo-tree.sources.filesystem.commands").open(state)
