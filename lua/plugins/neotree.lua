@@ -35,6 +35,7 @@ return {
         hide_gitignored = false,
         never_show = {
           ".DS_Store",
+          "thumbs.db",
         },
         hide_by_name = {
           ".git",
