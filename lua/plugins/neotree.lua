@@ -31,14 +31,20 @@ return {
         end,
       },
       filtered_items = {
+        hide_dotfiles = false,
+        hide_gitignored = false,
         never_show = {
           ".DS_Store",
+        },
+        hide_by_name = {
+          ".git",
+          ".idea",
         },
       },
       window = {
         mappings = {
-          o = "system_open", -- 使用系统默认程序打开当前文件
-          h = function(state)
+          ["o"] = "system_open", -- 使用系统默认程序打开当前文件
+          ["h"] = function(state)
             -- 折叠当前目录或上级目录
             -- local node = state.tree:get_node()
             -- if (node.type == "directory" or node:has_children()) and node:is_expanded() then
@@ -47,10 +53,9 @@ return {
             --   require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
             -- end
 
-            -- 上级目录
             require("neo-tree.ui.renderer").focus_node(state, state.tree:get_node():get_parent_id())
           end,
-          l = function(state)
+          ["l"] = function(state)
             -- 目录或文件有子项目的先展开，展开后目录选择第一个子项目，文件打开当前文件
             -- local node = state.tree:get_node()
             -- if node.type == "directory" or node:has_children() then
@@ -65,21 +70,19 @@ return {
             --   require("neo-tree.sources.filesystem.commands").open(state)
             -- end
 
-            local node = state.tree:get_node()
-            if node.type == "directory" or node:has_children() then
-              if node:is_expanded() then
-                if node.type == "directory" then
-                  state.commands.toggle_node(state)
-                elseif node.type == "file" then
-                  require("neo-tree.sources.filesystem.commands").open(state)
-                end
-              else
-                state.commands.toggle_node(state)
-              end
-            elseif node.type == "file" then
+            if state.tree:get_node().type == "directory" then
+              state.commands.toggle_node(state)
+            else
               require("neo-tree.sources.filesystem.commands").open(state)
             end
           end,
+          ["t"] = "toggle_node",
+          ["f"] = function()
+            require("flash").jump()
+          end,
+          ["F"] = "fuzzy_finder",
+          ["/"] = "filter_on_submit",
+          ["<Tab>"] = "open_tabnew", -- 在新的tab中打开文件
           ["cn"] = "copy_file_name", -- 复制文件名
         },
       },
