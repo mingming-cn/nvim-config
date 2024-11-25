@@ -8,6 +8,7 @@ opt.colorcolumn = "120"
 -- opt.hidden = false
 opt.relativenumber = false
 opt.spelllang = { "en", "cjk" }
+-- opt.mousemodel = "extend"
 
 -- LSP Server to use for Ruby.
 -- Set to "solargraph" to use solargraph instead of ruby_lsp.

@@ -30,6 +30,11 @@ return {
           -- vim.cmd("silent !start explorer " .. p)
         end,
       },
+      follow_current_file = {
+        enabled = true, -- This will find and focus the file in the active buffer every time
+        --               -- the current file is changed while the tree is open.
+        leave_dirs_open = true, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+      },
       filtered_items = {
         hide_dotfiles = false,
         hide_gitignored = false,
@@ -78,9 +83,11 @@ return {
             end
           end,
           ["t"] = "toggle_node",
-          ["f"] = function()
+          ["s"] = function()
             require("flash").jump()
           end,
+          ["vh"] = "open_split",
+          ["vv"] = "open_vsplit",
           ["F"] = "fuzzy_finder",
           ["/"] = "filter_on_submit",
           ["<Tab>"] = "open_tabnew", -- 在新的tab中打开文件

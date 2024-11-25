@@ -34,7 +34,7 @@ return {
       end, { desc = "Golangci lint" })
     end,
     event = { "CmdlineEnter" },
-    ft = { "go", "gomod" },
+    -- ft = { "go", "gomod", "gosum", "gotmpl", "gohtmltmpl", "gotexttmpl" },
     build = ':lua require("go.install").update_all_sync()',
   },
 }
